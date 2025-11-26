@@ -9,12 +9,7 @@ SECRET_KEY = 'django-insecure-change-this-in-production-12345'  # fine for now
 DEBUG = False                                   # Important for Render
 
 # This is the only line you needed to fix!
-ALLOWED_HOSTS = [
-    'coach-portal.onrender.com',
-    'localhost',
-    '127.0.0.1',
-    '.onrender.com',      # allows any subdomain too (safe for free tier)
-]
+ALLOWED_HOSTS = ['*']  # Allow all domains for Render (change later for security)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
