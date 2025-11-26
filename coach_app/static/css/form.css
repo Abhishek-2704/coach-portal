@@ -1,0 +1,5 @@
+.form-card {max-width:520px;margin:40px auto}
+.form-card h2 {font-size:2.3rem}
+.form-card input, .form-card select {margin:12px 0;padding:16px}
+.btn-group {display:flex;gap:15px;margin-top:30px}
+.btn-group .btn {flex:1}

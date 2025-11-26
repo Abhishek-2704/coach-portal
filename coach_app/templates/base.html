@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Basketball Coach Portal{% endblock %}</title>
+
+    <!-- Global Styles (your current style.css) -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Page-specific CSS will go here -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="container logo-section">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo" onerror="this.style.display='none'">
+            <div class="site-name">Basketball Coach Portal</div>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Your Academy • Made with passion</p>
+        </div>
+    </footer>
+</body>
+</html>

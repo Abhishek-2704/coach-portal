@@ -237,3 +237,5 @@ def fees_pdf_report(request, location_id):
     buffer.close()
     response.write(pdf)
     return response
+def intro(request):
+    return render(request, 'intro.html')

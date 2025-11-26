@@ -1,41 +1,157 @@
-/* ULTRA CLEAN MINIMAL DESIGN - 2025 Style */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Beautiful, BFI-Inspired Design - Clean, Blue, Responsive */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f8f9fc;
-    color: #2d3748;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;  /* Light gray background like BFI */
+    color: #333;
     line-height: 1.6;
-    min-height: 100vh;
 }
 
 .container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header - Logo & Site Name */
+.header {
     background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #1a202c;
-    text-align: center;
-    margin-bottom: 12px;
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-h2 {
+.logo {
+    height: 50px;
+    width: auto;
+    margin-right: 15px;
+}
+
+.site-name {
     font-size: 1.8rem;
-    font-weight: 600;
-    color: #4a5568;
-    text-align: center;
-    margin-bottom: 40px;
+    color: #4299e1;  /* BFI blue */
+    font-weight: 700;
 }
 
+/* Main Content */
+.main-content {
+    min-height: calc(100vh - 120px);  /* Full height minus header/footer */
+    padding: 40px 0;
+}
+
+/* Forms & Cards - Clean like BFI */
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+h1, h2 {
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.8rem; }
+
+/* Buttons - BFI Style Blue */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: #4299e1;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.btn:hover {
+    background: #3182ce;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(66,153,225,0.3);
+}
+
+.btn-success {
+    background: #48bb78;
+}
+
+.btn-success:hover {
+    background: #38a169;
+}
+
+/* Input Fields - Clean BFI Form */
+input[type="text"], input[type="password"], input[type="number"], select {
+    width: 100%;
+    padding: 16px;
+    margin: 12px 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66,153,225,0.1);
+}
+
+/* Table - Responsive */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.styled-table th {
+    background: #4299e1;
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.styled-table td {
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.styled-table tbody tr:hover {
+    background: #f7fafc;
+}
+
+/* Card Grid */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -44,115 +160,68 @@ h2 {
 }
 
 .card {
-    background: #ffffff;
+    background: white;
     padding: 32px;
     border-radius: 16px;
     text-align: center;
-    border: 1px solid #e2e8f0;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s;
 }
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    border-color: #4299e1;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
-.card h3 {
-    font-size: 1.6rem;
-    color: #2b6cb0;
-    margin-bottom: 8px;
-}
-
-.card p {
-    color: #718096;
-    font-size: 1.1rem;
-}
-
-.styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 30px 0;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-}
-
-.styled-table th {
-    background-color: #4299e1;
-    color: white;
-    padding: 18px 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 0.8px;
-}
-
-.styled-table td {
-    padding: 18px 15px;
-    border-bottom: 1px solid #e2e8f0;
-    text-align: center;
-}
-
-.styled-table tbody tr:hover {
-    background-color: #f7fafc;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    margin: 8px;
-    background: #4299e1;
-    color: white;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
-}
-
-.btn:hover {
-    background: #3182ce;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(66, 153, 225, 0.4);
-}
-
-.btn-success { background: #48bb78; }
-.btn-success:hover { background: #38a169; }
-.btn-warning { background: #ed8936; }
-.btn-warning:hover { background: #dd6b20; }
-
-input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: #4299e1;
-}
-
+/* Messages */
 .messages {
-    padding: 16px 24px;
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    padding: 16px;
     border-radius: 12px;
     margin: 20px 0;
     font-weight: 500;
 }
 
-.back-link {
-    position: absolute;
-    top: 20px;
-    left: 40px;
-    color: #4299e1;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
+.messages.error {
+    background: #fee;
+    color: #c53030;
+    border: 1px solid #feb2b2;
 }
 
-.back-link:hover {
-    color: #3182ce;
-    text-decoration: underline;
+.messages.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Footer */
+.footer {
+    background: #2d3748;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+/* Mobile Responsive - BFI Style */
+@media (max-width: 768px) {
+    .container { padding: 15px; }
+    .header { padding: 10px 0; }
+    .logo-section { flex-direction: column; text-align: center; }
+    .logo { margin-right: 0; margin-bottom: 10px; }
+    .site-name { font-size: 1.5rem; }
+    .card { padding: 24px; margin: 10px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .btn, input { font-size: 1rem; padding: 14px; }
+    .styled-table { font-size: 0.9em; }
+    .styled-table th, .styled-table td { padding: 12px; }
+    .card-grid { grid-template-columns: 1fr; gap: 16px; }
+    .main-content { padding: 20px 0; }
+}
+
+/* Dark Mode Support (Optional) */
+@media (prefers-color-scheme: dark) {
+    body { background: #1a202c; color: #e2e8f0; }
+    .card { background: #2d3748; }
+    input { background: #4a5568; color: #e2e8f0; border-color: #718096; }
 }

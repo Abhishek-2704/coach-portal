@@ -1,14 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>{{ coach.name }} - Locations</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 <div class="container">
-    <a href="{% url 'coach_logout' %}" style="position:absolute; top:20px; right:40px; color:#e53e3e; font-weight:600;">Logout</a>
+    <a href="{% url 'coach_logout' %}" class="btn" style="position:absolute; top:20px; right:20px; padding:10px 20px;">Logout</a>
 
     <h1>Welcome, {{ coach.name }}!</h1>
     <h2>Choose Your Batch</h2>
@@ -18,14 +12,17 @@
         <a href="{% url 'attendance' loc.id %}" class="card">
             <h3>{{ loc.name }}</h3>
             <p>{{ loc.time_slot }}</p>
-            <small>{{ loc.students.count }} students</small>
+            <p style="color:#718096;">{{ loc.students.count }} students</p>
         </a>
+        {% empty %}
+        <div class="card">
+            <h3>No batches yet</h3>
+            <a href="{% url 'add_location' coach.id %}" class="btn">Add First Batch</a>
+        </div>
         {% endfor %}
-
-        <a href="{% url 'add_location' coach.id %}" class="card" style="background:#f0f9ff; border:2px dashed #4299e1;">
+        <a href="{% url 'add_location' coach.id %}" class="card" style="border:2px dashed #4299e1; background:#f0f9ff;">
             <h3>+ Add New Batch</h3>
         </a>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}

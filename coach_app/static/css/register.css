@@ -1,0 +1,4 @@
+.register-card {max-width:500px;margin:40px auto}
+.register-card h2 {font-size:2.3rem}
+.register-card input, .register-card select {margin:12px 0;padding:16px}
+.register-card .btn-success {margin-top:20px;padding:18px;font-size:1.2rem}

@@ -1,0 +1,6 @@
+.card-grid {gap:28px}
+.card {padding:40px;transition:all .3s;cursor:pointer}
+.card:hover {transform:translateY(-15px)}
+.card h3 {font-size:1.8rem;color:#4299e1}
+.add-card {border:3px dashed #4299e1;background:#f0f9ff}
+.add-card h3 {font-size:2.5rem}
