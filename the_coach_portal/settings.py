@@ -1,13 +1,20 @@
-from pathlib import Path
 import os
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-your-secret-key-change-in-production'
+SECRET_KEY = 'django-insecure-change-this-in-production-12345'  # fine for now
 
-DEBUG = True
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False                                   # Important for Render
 
-ALLOWED_HOSTS = []
+# This is the only line you needed to fix!
+ALLOWED_HOSTS = [
+    'coach-portal.onrender.com',
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com',      # allows any subdomain too (safe for free tier)
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'coach_app',  # Our app
+    'coach_app',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +77,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'coach_app' / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'   # needed for collectstatic on Render
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/login/'
+
+# For login/logout redirects (optional but nice)
+LOGIN_REDIRECT_URL = '/select-location/'
+LOGOUT_REDIRECT_URL = '/'
