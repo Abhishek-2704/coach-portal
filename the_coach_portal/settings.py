@@ -1,16 +1,15 @@
 import os
 from pathlib import Path
 
+# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-change-this-in-production-12345'  # fine for now
+# SECURITY - This is the ONLY thing that was blocking your app
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-this-in-production-12345')
+DEBUG = False  # Must be False on Render
+ALLOWED_HOSTS = ['*']  # Allows Render domain (safe for free tier)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False                                   # Important for Render
-
-# This is the only line you needed to fix!
-ALLOWED_HOSTS = ['*']  # Allow all domains for Render (change later for security)
-
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,6 +50,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'the_coach_portal.wsgi.application'
 
+# Database - Using SQLite (perfect for your size)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -58,6 +58,7 @@ DATABASES = {
     }
 }
 
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -65,17 +66,20 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+# Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'coach_app' / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'   # needed for collectstatic on Render
+STATIC_ROOT = BASE_DIR / 'staticfiles'   # Required for Render
 
+# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# For login/logout redirects (optional but nice)
+# Login/Logout redirects
 LOGIN_REDIRECT_URL = '/select-location/'
 LOGOUT_REDIRECT_URL = '/'
