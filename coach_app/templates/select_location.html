@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ coach.name }} - Locations</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <a href="{% url 'coach_logout' %}" style="position:absolute; top:20px; right:40px; color:#e53e3e; font-weight:600;">Logout</a>
+
+    <h1>Welcome, {{ coach.name }}!</h1>
+    <h2>Choose Your Batch</h2>
+
+    <div class="card-grid">
+        {% for loc in locations %}
+        <a href="{% url 'attendance' loc.id %}" class="card">
+            <h3>{{ loc.name }}</h3>
+            <p>{{ loc.time_slot }}</p>
+            <small>{{ loc.students.count }} students</small>
+        </a>
+        {% endfor %}
+
+        <a href="{% url 'add_location' coach.id %}" class="card" style="background:#f0f9ff; border:2px dashed #4299e1;">
+            <h3>+ Add New Batch</h3>
+        </a>
+    </div>
+</div>
+</body>
+</html>

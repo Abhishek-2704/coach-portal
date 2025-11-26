@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Attendance History - {{ location.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <a href="{% url 'attendance' location.id %}" class="back-link">Back to Attendance</a>
+    <a href="{% url 'coach_logout' %}" style="position:absolute; top:20px; right:40px; color:#e53e3e; font-weight:600;">Logout</a>
+
+    <h1>Attendance History</h1>
+    <h2>{{ location.name }} • {{ location.time_slot }}</h2>
+
+    <div style="margin:30px 0; text-align:center;">
+        <a href="?export=excel" class="btn btn-success">Download Excel Report</a>
+        <a href="{% url 'fees_pdf_report' location.id %}" class="btn btn-success">Download Fees PDF</a>
+    </div>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Student Name</th>
+                <th>Age</th>
+                <th>Blood Group</th>
+                <th>Fees Paid</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.date|date:"d M Y" }}</td>
+                <td>{{ record.student.name }}</td>
+                <td>{{ record.student.age }}</td>
+                <td>{{ record.student.blood_group }}</td>
+                <td>{% if record.student.fees_paid %}YES{% else %}NO{% endif %}</td>
+                <td>{% if record.present %}Present{% else %}Absent{% endif %}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6">No attendance records yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
