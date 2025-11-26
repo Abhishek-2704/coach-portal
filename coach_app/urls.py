@@ -2,14 +2,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # Auth
-    path('', views.intro, name='intro'),  # Landing page
-    path('', views.coach_login, name='coach_login'),
-    path('login/', views.coach_login, name='coach_login'),
+    # Landing & Auth
+    path('', views.intro, name='intro'),                    # Home page
+    path('login/', views.coach_login, name='coach_login'),  # Only one login URL
     path('register/', views.register_coach, name='register_coach'),
     path('logout/', views.coach_logout, name='coach_logout'),
 
-    # App
+    # Main App
     path('locations/<int:coach_id>/', views.select_location, name='select_location'),
     path('attendance/<int:location_id>/', views.attendance, name='attendance'),
     path('student/<int:student_id>/', views.student_detail, name='student_detail'),
