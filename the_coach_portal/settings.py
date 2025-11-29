@@ -3,12 +3,10 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-very-long-random-string-here')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'        # False on Render automatically
-ALLOWED_HOSTS = ['*']  # Render handles this safely
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-this-in-production-12345')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # False on Render automatically
+ALLOWED_HOSTS = ['*']  # Safe for Render free tier
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -19,10 +17,9 @@ INSTALLED_APPS = [
     'coach_app',
 ]
 
-# MIDDLEWARE — WHITENOISE MUST BE SECOND
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',   # ← THIS LINE IS CRITICAL
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ← CRITICAL FOR CSS ON RENDER
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -51,7 +48,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'the_coach_portal.wsgi.application'
 
-# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -59,19 +55,25 @@ DATABASES = {
     }
 }
 
-# Static files — FINAL WORKING VERSION
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'coach_app' / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
 
-# Login redirects
-LOGIN_REDIRECT_URL = '/select-location/'
-LOGOUT_REDIRECT_URL = '/'
-
-# Others
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Asia/Kolkata'
+TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+
+# STATIC FILES — THIS IS THE MAGIC THAT FIXES EVERYTHING
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'coach_app' / 'static']  # Your CSS/images go here
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Render collects here
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Serves CSS on Render
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/select-location/'
+LOGOUT_REDIRECT_URL = '/'
