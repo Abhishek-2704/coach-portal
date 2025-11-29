@@ -1,13 +1,12 @@
 import os
 from pathlib import Path
 
-# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY - This is the ONLY thing that was blocking your app
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-this-in-production-12345')
-DEBUG = True  # Must be False on Render
-ALLOWED_HOSTS = ['*']  # Allows Render domain (safe for free tier)
+# SECURITY
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-very-long-random-string-here')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'        # False on Render automatically
+ALLOWED_HOSTS = ['*']  # Render handles this safely
 
 # Application definition
 INSTALLED_APPS = [
@@ -20,8 +19,10 @@ INSTALLED_APPS = [
     'coach_app',
 ]
 
+# MIDDLEWARE — WHITENOISE MUST BE SECOND
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',   # ← THIS LINE IS CRITICAL
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -50,7 +51,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'the_coach_portal.wsgi.application'
 
-# Database - Using SQLite (perfect for your size)
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -58,28 +59,19 @@ DATABASES = {
     }
 }
 
-# Password validation
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]
-
-# Internationalization
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
+# Static files — FINAL WORKING VERSION
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'coach_app' / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'   # Required for Render
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Login/Logout redirects
+# Login redirects
 LOGIN_REDIRECT_URL = '/select-location/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Others
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Asia/Kolkata'
+USE_I18N = True
+USE_TZ = True
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
