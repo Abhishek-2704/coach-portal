@@ -1,27 +1,41 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ student.name }} • Profile{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/student_detail.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container">
-    <a href="{% url 'attendance' student.location.id %}" class="back-link">Back to Attendance</a>
+    <a href="{% url 'attendance' student.location.id %}" class="back-btn">Back to Attendance</a>
 
-    <div class="card">
+    <div class="profile-header">
         <h1>{{ student.name }}</h1>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin:30px 0;">
-            <div>
-                <strong>Age:</strong> {{ student.age }}
+        <p class="batch">{{ student.location.name }} • {{ student.location.time_slot }}</p>
+    </div>
+
+    <div class="detail-card">
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">Age</span>
+                <span class="value">{{ student.age }} years</span>
             </div>
-            <div>
-                <strong>Blood Group:</strong> {{ student.blood_group }}
+            <div class="info-item">
+                <span class="label">Blood Group</span>
+                <span class="value">{{ student.blood_group|default:"Not specified" }}</span>
             </div>
-            <div>
-                <strong>Fees Paid:</strong> {% if student.fees_paid %}<span style="color:#48bb78;">YES</span>{% else %}<span style="color:#ed8936;">NO</span>{% endif %}
-            </div>
-            <div>
-                <strong>Batch:</strong> {{ student.location.name }} ({{ student.location.time_slot }})
+            <div class="info-item">
+                <span class="label">Fees Status</span>
+                <span class="value status {% if student.fees_paid %}paid{% else %}pending{% endif %}">
+                    {% if student.fees_paid %}Paid{% else %}Pending{% endif %}
+                </span>
             </div>
         </div>
-        <div style="text-align:center;">
-            <a href="{% url 'edit_student' student.id %}" class="btn">Edit Details</a>
+
+        <div class="actions">
+            <a href="{% url 'edit_student' student.id %}" class="btn-edit">Edit Details</a>
         </div>
     </div>
 </div>

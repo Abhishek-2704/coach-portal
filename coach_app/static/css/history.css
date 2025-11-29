@@ -1,3 +1,137 @@
-.history-table th {background:#4299e1;color:white;padding:18px}
-.history-table td {padding:16px}
-.export-btn {display:block;width:320px;margin:30px auto;padding:16px;background:#48bb78;color:white;text-align:center;border-radius:12px;font-size:1.2rem}
+/* ==================================================== */
+/* HISTORY & EXPORT PAGE - Clean, professional, mobile-perfect */
+/* ==================================================== */
+
+.back-btn {
+    display: inline-block;
+    background: #4299e1;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    font-size: 2.8rem;
+    color: #2d3748;
+    font-weight: 700;
+}
+
+.page-header h2 {
+    font-size: 1.6rem;
+    color: #4299e1;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.export-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.btn-export {
+    background: #48bb78;
+    color: white;
+    padding: 18px 50px;
+    border-radius: 50px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 15px 35px rgba(72,187,120,0.4);
+    transition: all 0.4s;
+}
+
+.btn-export:hover {
+    background: #38a169;
+    transform: translateY(-5px);
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.history-table th {
+    background: #4299e1;
+    color: white;
+    padding: 20px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.history-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.history-table tr:hover {
+    background: #f0f9ff;
+}
+
+.status {
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.status.present {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status.absent {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.empty {
+    text-align: center;
+    padding: 60px;
+    color: #718096;
+    font-size: 1.3rem;
+}
+
+/* MOBILE: Card layout */
+@media (max-width: 768px) {
+    .history-table thead { display: none; }
+    .history-table tr {
+        display: block;
+        margin: 20px 0;
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .history-table td {
+        display: block;
+        text-align: right;
+        padding: 12px 0;
+        border: none;
+    }
+    .history-table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 600;
+        color: #4299e1;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+    .page-header h1 { font-size: 2.3rem; }
+}

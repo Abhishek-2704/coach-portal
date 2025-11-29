@@ -4,30 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Basketball Coach Portal{% endblock %}</title>
-
-    <!-- Global Styles (your current style.css) -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <!-- Page-specific CSS will go here -->
+    <title>{% block title %} Coach Portal{% endblock %}</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <header class="header">
-        <div class="container logo-section">
-            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo" onerror="this.style.display='none'">
-            <div class="site-name">Basketball Coach Portal</div>
-        </div>
-    </header>
 
-    <main class="main-content container">
-        {% block content %}{% endblock %}
+   <!-- PREMIUM HEADER — LOGO LINKS TO BATCHES PAGE -->
+{% if user.is_authenticated %}
+<header class="main-header">
+    <div class="container header-content">
+        <a href="{% url 'select_location' user.coach.id %}" class="logo-link">
+            <h2> Coach Portal</h2>
+        </a>
+
+        <div class="header-right">
+            <span class="welcome-text">Hello, {{ user.coach.name }}!</span>
+            <a href="{% url 'coach_logout' %}" class="logout-btn">Logout</a>
+        </div>
+    </div>
+</header>
+{% endif %}
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container">
+            {% block content %}
+            <!-- All page content goes here -->
+            {% endblock %}
+        </div>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>© 2025 Your Academy • Made with passion</p>
-        </div>
-    </footer>
 </body>
 </html>

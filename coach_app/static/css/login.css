@@ -1,5 +1,97 @@
-.login-card {max-width:420px;margin:40px auto}
-.login-card h2 {font-size:2.4rem;color:#2d3748}
-.login-card input {margin:15px 0;padding:16px;font-size:1.1rem}
-.login-card .btn {margin-top:25px;font-size:1.2rem;padding:18px}
-.login-card p {margin-top:25px}
+/* login.css - 100% centered, mobile-perfect, stunning */
+.auth-body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-container { width: 100%; max-width: 440px; }
+
+.login-card {
+    background: white;
+    padding: 60px 50px;
+    border-radius: 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    text-align: center;
+    animation: float 0.8s ease-out;
+}
+
+@keyframes float {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-card h1 {
+    font-size: 2.8rem;
+    color: #2d3748;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 18px 20px;
+    margin: 12px 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    background: #f8faff;
+    transition: all 0.3s;
+}
+
+.login-card input:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 5px rgba(66,153,225,0.2);
+    background: white;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 20px;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.4s;
+    box-shadow: 0 15px 35px rgba(72,187,120,0.4);
+}
+
+.btn-login:hover {
+    background: #38a169;
+    transform: translateY(-5px);
+}
+
+.message {
+    padding: 14px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-weight: 500;
+}
+.message.error { background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; }
+.message.success { background: #f0fff4; color: #22543d; border: 1px solid #9ae6b4; }
+
+.register-link {
+    margin-top: 30px;
+    color: #718096;
+    font-size: 1.1rem;
+}
+.register-link a {
+    color: #4299e1;
+    font-weight: 700;
+    text-decoration: none;
+}
+.register-link a:hover { text-decoration: underline; }

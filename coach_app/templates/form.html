@@ -1,17 +1,94 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {% if title %}{{ title }}{% else %}{% if student %}Edit Student - {{ student.name }}{% else %}Add New Student{% endif %}{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container">
-    <a href="javascript:history.back()" class="back-link">Back</a>
+<div class="form-page">
+    <!-- SMART BACK BUTTON — ONLY SHOWS ATTENDANCE LINK IF location_id EXISTS -->
+    {% if location_id %}
+        <a href="{% url 'attendance' location_id %}" class="back-btn">Back to Attendance</a>
+    {% else %}
+        <a href="{% url 'select_location' user.coach.id %}" class="back-btn">Back to Batches</a>
+    {% endif %}
 
-    <div class="card">
-        <h2>{{ title }}</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success">Save</button>
-            <a href="javascript:history.back()" class="btn">Cancel</a>
-        </form>
+    <div class="form-container">
+        <div class="form-card">
+            <h1>
+                {% if title %}
+                    {{ title }}
+                {% elif student %}
+                    Edit Student
+                {% else %}
+                    Add New Student
+                {% endif %}
+            </h1>
+
+            <form method="post" class="styled-form">
+                {% csrf_token %}
+
+                <!-- Student Fields -->
+                {% if form.name %}
+                    <div class="form-group">
+                        <label>Name</label>
+                        {{ form.name }}
+                    </div>
+                {% endif %}
+
+                {% if form.age %}
+                    <div class="form-group">
+                        <label>Age</label>
+                        {{ form.age }}
+                    </div>
+                {% endif %}
+
+                {% if form.blood_group %}
+                    <div class="form-group">
+                        <label>Blood Group</label>
+                        {{ form.blood_group }}
+                    </div>
+                {% endif %}
+
+                {% if form.fees_paid %}
+                    <div class="form-group fees-group">
+                        <label>Fees Paid</label>
+                        <label class="switch">
+                            {{ form.fees_paid }}
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                {% endif %}
+
+                <!-- Batch Fields -->
+                {% if form.time_slot %}
+                    <div class="form-group">
+                        <label>Batch Name</label>
+                        {{ form.name }}
+                    </div>
+                    <div class="form-group">
+                        <label>Time Slot</label>
+                        {{ form.time_slot }}
+                    </div>
+                {% endif %}
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">
+                        {% if title %}{{ title }}{% elif student %}Update Student{% else %}Add Student{% endif %}
+                    </button>
+                    {% if location_id %}
+                        <a href="{% url 'attendance' location_id %}" class="btn-cancel">Cancel</a>
+                    {% else %}
+                        <a href="{% url 'select_location' user.coach.id %}" class="btn-cancel">Cancel</a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

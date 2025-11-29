@@ -1,4 +1,99 @@
-.register-card {max-width:500px;margin:40px auto}
-.register-card h2 {font-size:2.3rem}
-.register-card input, .register-card select {margin:12px 0;padding:16px}
-.register-card .btn-success {margin-top:20px;padding:18px;font-size:1.2rem}
+/* ==================================================== */
+/* REGISTER PAGE - Same design language as Login/Intro  */
+/* Mobile-first, clean, professional, fast loading      */
+/* ==================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.register-container { width: 100%; max-width: 460px; }
+
+.register-card {
+    background: white;
+    padding: 55px 45px;
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.register-card h1 {
+    font-size: 2.7rem;
+    color: #2d3748;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+}
+
+.register-card input {
+    width: 100%;
+    padding: 18px 20px;
+    margin: 14px 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    background: #f8faff;
+}
+
+.register-card input:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 5px rgba(66,153,225,0.2);
+    background: white;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 20px;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: all 0.4s;
+}
+
+.btn-register:hover {
+    background: #38a169;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(72,187,120,0.4);
+}
+
+.message { padding: 15px; border-radius: 12px; margin: 20px 0; font-weight: 500; }
+.message.error { background: #fff5f5; color: #c53030; border: 1px solid #feb2b2; }
+.message.success { background: #f0fff4; color: #22543d; border: 1px solid #9ae6b4; }
+
+.login-link {
+    margin-top: 35px;
+    color: #718096;
+    font-size: 1.1rem;
+}
+.login-link a {
+    color: #4299e1;
+    font-weight: 700;
+    text-decoration: none;
+}
+.login-link a:hover { text-decoration: underline; }
+
+/* Mobile already perfect */

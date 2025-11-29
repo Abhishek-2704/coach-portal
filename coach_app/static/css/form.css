@@ -1,5 +1,183 @@
-.form-card {max-width:520px;margin:40px auto}
-.form-card h2 {font-size:2.3rem}
-.form-card input, .form-card select {margin:12px 0;padding:16px}
-.btn-group {display:flex;gap:15px;margin-top:30px}
-.btn-group .btn {flex:1}
+/* ==================================================== */
+/* FORM PAGE - Add Student & Edit Student              */
+/* Clean, modern, mobile-perfect form design           */
+/* ==================================================== */
+
+.form-page {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    background: #4299e1;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 30px;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background: #3182ce;
+    transform: translateY(-3px);
+}
+
+.form-container {
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.form-card {
+    padding: 50px 45px;
+    text-align: center;
+}
+
+.form-card h1 {
+    font-size: 2.6rem;
+    color: #2d3748;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.styled-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.styled-form input,
+.styled-form select {
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    background: #f8faff;
+    transition: all 0.3s;
+}
+
+.styled-form input:focus,
+.styled-form select:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.15);
+    background: white;
+}
+
+/* BEAUTIFUL TOGGLE FOR FEES PAID */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 78px;
+    height: 42px;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: 0.4s;
+    border-radius: 42px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 34px;
+    width: 34px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #10b981;
+}
+
+input:checked + .slider:before {
+    transform: translateX(36px);
+}
+
+.fees-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.form-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.btn-save {
+    background: #48bb78;
+    color: white;
+    padding: 18px 50px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.btn-save:hover {
+    background: #38a169;
+    transform: translateY(-5px);
+}
+
+.btn-cancel {
+    background: #718096;
+    color: white;
+    padding: 18px 50px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+    background: #5a6778;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .form-card { padding: 40px 25px; }
+    .form-actions { flex-direction: column; }
+    .btn-save, .btn-cancel { width: 100%; text-align: center; }
+    .back-btn { margin-bottom: 20px; }
+}

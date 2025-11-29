@@ -2,51 +2,82 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/attendance.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/attendance.css' %}">
 {% endblock %}
 
+{% block title %}Attendance • {{ location.name }}{% endblock %}
+
 {% block content %}
-<div class="container">
-    <a href="{% url 'select_location' location.coach.id %}" class="back-link">Back to Batches</a>
-    <a href="{% url 'coach_logout' %}" class="btn" style="position:absolute; top:20px; right:20px; padding:10px 20px;">Logout</a>
-
-    <h1>Attendance for {{ location.name }}</h1>
-    <h2>{{ location.time_slot }} • {{ today|date:"d M Y" }}</h2>
-
-    <form method="post">
-        {% csrf_token %}
-        <table class="styled-table">
-            <thead>
-                <tr>
-                    <th>Present</th>
-                    <th>Student Name</th>
-                    <th>Age</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for student in students %}
-                <tr>
-                    <td>
-                        <input type="checkbox" name="present_{{ student.id }}" {% if attendance_records|get_item:student.id %}checked{% endif %}>
-                    </td>
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.age }}</td>
-                    <td>
-                        <a href="{% url 'student_detail' student.id %}" class="btn">View</a>
-                        <a href="{% url 'edit_student' student.id %}" class="btn btn-warning">Edit</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <button type="submit" class="btn btn-success">Save Attendance</button>
-    </form>
-
-    <div class="action-buttons">
-        <a href="{% url 'add_student' location.id %}" class="btn">+ Add Student</a>
-        <a href="{% url 'attendance_history' location.id %}" class="btn btn-warning">View History & Export</a>
-        <a href="{% url 'fees_pdf_report' location.id %}" class="btn btn-success">Fees PDF</a>
+<div class="attendance-page">
+    <div class="header">
+        <a href="{% url 'select_location' user.coach.id %}" class="back-btn">Back to Batches</a>
+        <h1>Attendance</h1>
     </div>
+
+    <div class="batch-title">
+        <h2>{{ location.name }} • {{ location.time_slot }}</h2>
+        <p class="date">Today • {{ today|date:"l, d F Y" }}</p>
+    </div>
+
+    <div class="action-bar">
+        <a href="{% url 'add_student' location.id %}" class="btn btn-success">+ Add Student</a>
+        <button type="submit" form="attendance-form" class="btn btn-primary">Save Attendance</button>
+        <a href="{% url 'attendance_history' location.id %}" class="btn btn-info">View History</a>
+        <a href="{% url 'fees_pdf_report' location.id %}" class="btn btn-purple">Fees Report</a>
+    </div>
+
+    <form id="attendance-form" method="post">
+        {% csrf_token %}
+        <div class="table-container">
+            <table class="attendance-table">
+                <thead>
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="25%">Student Name</th>
+                        <th width="10%">Age</th>
+                        <th width="15%">Fees Status</th>
+                        <th width="15%">Present?</th>
+                        <th width="30%">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td class="center">{{ forloop.counter }}</td>
+                        <td class="name">{{ student.name }}</td>
+                        <td class="center">{{ student.age }} yrs</td>
+                        <td class="center">
+                            <span class="badge {% if student.fees_paid %}paid{% else %}pending{% endif %}">
+                                {% if student.fees_paid %}Paid{% else %}Pending{% endif %}
+                            </span>
+                        </td>
+                        <td class="center">
+                            <label class="switch">
+                                <input type="checkbox" name="present_{{ student.id }}"
+                                       {% if student.id in present_student_ids %}checked{% endif %}>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td class="actions">
+                            <a href="{% url 'student_detail' student.id %}" class="btn-small view">View</a>
+                            <a href="{% url 'edit_student' student.id %}" class="btn-small edit">Edit</a>
+                            <form method="post" action="{% url 'delete_student' student.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-small delete"
+                                        onclick="return confirm('Delete {{ student.name }} permanently?')">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty-state">No students in this batch yet</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
 </div>
 {% endblock %}

@@ -1,10 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#f8f9fa;color:#2d3748;line-height:1.6}
-.container{max-width:1200px;margin:0 auto;padding:0 20px}
-header{background:white;box-shadow:0 2px 15px rgba(0,0,0,0.1);padding:15px 0;position:sticky;top:0;z-index:100}
-.logo-section{display:flex;align-items:center;justify-content:center;gap:15px}
-.logo{height:55px}
-.site-name{font-size:2rem;color:#4299e1;font-weight:700}
-footer{background:#2d3748;color:white;text-align:center;padding:20px;margin-top:50px}
-@media(max-width:768px){.logo-section{flex-direction:column;text-align:center}.site-name{font-size:1.6rem}}
+/* FINAL base.css - Premium header, perfect spacing, mobile-ready */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8fafc;
+    color: #2d3748;
+    line-height: 1.6;
+}
+
+.portal-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.portal-title a:hover {
+    text-decoration: underline;
+    /* or any hover effect you prefer */
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* PREMIUM HEADER */
+.main-header {
+    background: white;
+    padding: 20px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header-content h2 {
+    font-size: 1.9rem;
+    color: #4299e1;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-link h2 {
+    color: #4299e1;
+    font-weight: 700;
+    margin: 0;
+    transition: color 0.3s;
+}
+
+.logo-link:hover h2 {
+    color: #3182ce;
+}
+
+.welcome-text {
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(255,107,107,0.3);
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255,107,107,0.4);
+}
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.1rem;
+}
+
+.header-right span {
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 8px 20px rgba(255,107,107,0.3);
+}
+
+.logout-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255,107,107,0.4);
+}
+
+/* Main content spacing */
+.main-content {
+    padding: 40px 0;
+    min-height: calc(100vh - 96px);
+}
+
+/* Back buttons everywhere */
+.back-btn {
+    display: inline-block;
+    background: #4299e1;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 30px;
+    transition: all 0.3s;
+    box-shadow: 0 8px 20px rgba(66,153,225,0.3);
+}
+
+.back-btn:hover {
+    background: #3182ce;
+    transform: translateY(-4px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-content h2 { font-size: 1.7rem; }
+    .main-content { padding: 30px 0; }
+}

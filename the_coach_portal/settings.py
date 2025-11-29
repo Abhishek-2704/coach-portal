@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY - This is the ONLY thing that was blocking your app
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-this-in-production-12345')
-DEBUG = False  # Must be False on Render
+DEBUG = True  # Must be False on Render
 ALLOWED_HOSTS = ['*']  # Allows Render domain (safe for free tier)
 
 # Application definition
